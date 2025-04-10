@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BaithiController;
 use App\Http\Controllers\ChamdiemController;
 use App\Http\Controllers\ChitietbaithiController;
+use App\Http\Controllers\KetquaController;
 use App\Http\Controllers\NguoidungController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -19,3 +20,5 @@ Route::post('/Dangnhap', [NguoidungController::class, 'getNguoidung'])->name('da
 Route::get('/Chitietbaithi/{id}', [ChitietbaithiController::class, 'getToanBaiThi'])->name('laytoanbaithi');
 
 Route::post('/Chamdiem', [ChamdiemController::class, 'chamDiem'])->name('chamdiem')->withoutMiddleware([VerifyCsrfToken::class]);
+
+Route::get('/Ketqua/{id}', [KetquaController::class, 'getDSKQ'])->name('laydskq');
