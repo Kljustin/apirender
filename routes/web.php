@@ -6,6 +6,7 @@ use App\Http\Controllers\ChitietbaithiController;
 use App\Http\Controllers\KetquaController;
 use App\Http\Controllers\NguoidungController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\TheloaiController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Http\Middleware\HandleCors;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,7 @@ Route::get('/Chitietbaithi/{id}', [ChitietbaithiController::class, 'getToanBaiTh
 Route::post('/Chamdiem', [ChamdiemController::class, 'chamDiem'])->name('chamdiem')->withoutMiddleware([VerifyCsrfToken::class]);
 
 Route::get('/Ketqua/{id}', [KetquaController::class, 'getDSKQ'])->name('laydskq');
+
+Route::get('/Theloai', [TheloaiController::class, 'getDSTheloai'])->name('laydstl');
+
+Route::get('/BaithiNgD/{id}', [BaithiController::class, 'getDSBaithiID'])->name('laydsbtnd');

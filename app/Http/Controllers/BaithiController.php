@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Baithi;
+use App\Models\PBaithi;
+use App\Models\Theloai;
 use Illuminate\Http\Request;
 
 class BaithiController extends Controller
@@ -39,5 +41,25 @@ class BaithiController extends Controller
         $b->IDNguoidung = $request->IDNguoidung;
         $b->save();
         return response()->json($b, 200);
+    }
+    public function getDSBaithiID($id){
+        $baithi = Baithi::where('IDNguoidung', $id)->get();
+        $dsbt = [];
+        if($baithi!=null){
+            foreach($baithi as $v){
+                $tl = Theloai::where('IDTheloai', $v->IDTheloai)->first();
+                $bt = new PBaithi([
+                    'idbaithi' => $v->IDBaithi,
+                    'tenbaithi' => $v->Tenbaithi,
+                    'ngayrade' => $v->Ngayrade,
+                    'soluongcau' => $v->Soluongcau,
+                    'congkhai' => $v->Congkhai,
+                    'lamlai' => $v->Lamlai,
+                    'theloai'=> $tl->Tentheloai
+                ]);
+                $dsbt[] = $bt;
+            }
+        }
+        return response()->json($dsbt, 200);
     }
 }
