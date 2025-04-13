@@ -27,3 +27,7 @@ Route::get('/Ketqua/{id}', [KetquaController::class, 'getDSKQ'])->name('laydskq'
 Route::get('/Theloai', [TheloaiController::class, 'getDSTheloai'])->name('laydstl');
 
 Route::get('/BaithiNgD/{id}', [BaithiController::class, 'getDSBaithiID'])->name('laydsbtnd');
+
+Route::get('/Chitietchinhsua/{id}', [BaithiController::class, 'getCTBaiThiCauHoi'])->name('layctbtch');
+
+Route::post('/Themchitiet', [ChitietbaithiController::class, 'themCauhoicautraloi'])->name('themchitiet')->withoutMiddleware([VerifyCsrfToken::class]);
