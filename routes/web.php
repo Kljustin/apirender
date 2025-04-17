@@ -31,3 +31,5 @@ Route::get('/BaithiNgD/{id}', [BaithiController::class, 'getDSBaithiID'])->name(
 Route::get('/Chitietchinhsua/{id}', [BaithiController::class, 'getCTBaiThiCauHoi'])->name('layctbtch');
 
 Route::post('/Themchitiet', [ChitietbaithiController::class, 'themCauhoicautraloi'])->name('themchitiet')->withoutMiddleware([VerifyCsrfToken::class]);
+
+Route::delete('/Xoabaithi/{id}', [BaithiController::class, 'xoaDethi'])->name('xoadethi')->withoutMiddleware([VerifyCsrfToken::class]);

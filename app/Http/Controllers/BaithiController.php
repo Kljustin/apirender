@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Baithi;
 use App\Models\Cauhoi;
+use App\Models\Cautraloi;
 use App\Models\Chitietbaithi;
 use App\Models\PBaithi;
 use App\Models\PChitiet;
 use App\Models\Theloai;
 use DateTime;
+use Exception;
 use Illuminate\Http\Request;
 
 class BaithiController extends Controller
@@ -103,5 +105,20 @@ class BaithiController extends Controller
             'Chitiet' => $cttv
         ];
         return response()->json($kq, 200);
+    }
+    public function xoaDethi($id)
+    {
+        try {
+            $chitiet = Chitietbaithi::where('IDBaithi', $id)->get();
+            foreach ($chitiet as $v) {
+                Cauhoi::where('IDCauhoi', $v->IDCauhoi)->delete();
+                Cautraloi::where('IDCauhoi', $v->IDCauhoi)->delete();
+            }
+            Chitietbaithi::where('IDBaithi', $id)->delete();
+            Baithi::where('IDBaithi', $id)->first()->delete();
+            return response()->json([], 200);
+        } catch (Exception) {
+            return response()->json([], 404);
+        }
     }
 }
