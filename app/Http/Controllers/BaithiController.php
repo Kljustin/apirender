@@ -106,6 +106,11 @@ class BaithiController extends Controller
         ];
         return response()->json($kq, 200);
     }
+    public function getCTBaithi($id){
+        $bt = Baithi::where('IDBaithi', $id)->first();
+        if($bt == null) return response()->json([], 404);
+        return response()->json($bt, 200);
+    }
     public function xoaDethi($id)
     {
         try {
