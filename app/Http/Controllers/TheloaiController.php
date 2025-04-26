@@ -11,4 +11,7 @@ class TheloaiController extends Controller
         $tl = Theloai::all();
         return response()->json($tl, 200);
     }
+    public function themTheloai(Request $request){
+
+    }
 }

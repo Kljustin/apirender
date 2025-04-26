@@ -126,4 +126,19 @@ class BaithiController extends Controller
             return response()->json([], 404);
         }
     }
+    public function suaDethi(Request $request, string $id){
+        try{
+            $baithi = Baithi::where('IDBaithi', $id)->first();
+            $baithi->Tenbaithi = $request->Tenbaithi;
+            $baithi->Soluongcau = $request->Soluongcau;
+            $baithi->Congkhai = (int) $request->Congkhai;
+            $baithi->Lamlai = (int) $request->Lamlai;
+            $baithi->IDTheloai = $request->IDTheloai;
+            $baithi->save();
+            return response()->json($baithi, 200);
+        }
+        catch (Exception){
+            return response()->json([], 404);
+        }
+    }
 }
