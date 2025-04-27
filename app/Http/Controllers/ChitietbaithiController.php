@@ -72,4 +72,31 @@ class ChitietbaithiController extends Controller
             return response()->json([], 404);
         }
     }
+    public function xoaCauhoi(string $id){
+        try{
+            $ch = Cauhoi::where('IDCauhoi', $id)->first();
+            if($ch==null) return response()->json([], 404);
+            $ch->delete();
+            Cautraloi::where('IDCauhoi', $id)->delete();
+            Chitietbaithi::where('IDCauhoi', $id)->delete();
+            return response()->json([], 200);
+        }
+        catch(Exception){
+            return response()->json([], 404);
+        }
+    }
+    public function ctChinhsuach(string $id){
+        try{
+            $ch = Cauhoi::where('IDCauhoi', $id)->first();
+            $ctrl = Cautraloi::where('IDCauhoi', $id)->get();
+            $kq = [
+                'cauhoi'=>$ch,
+                'cautraloi' => $ctrl
+            ];
+            return response()->json($kq, 200);
+        }
+        catch(Exception){
+            return response()->json([], 404);
+        }
+    }
 }

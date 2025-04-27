@@ -14,10 +14,15 @@ Route::get('/', function(){
     return view('apiview');
 })->name('dsRoute');
 Route::get('/Baithi', [BaithiController::class, 'getDSBaithi'])->name('laydsbaithi');
+
 Route::get('/Baithi/{id}', [BaithiController::class, 'getBaithi'])->name('laybaithi');
+
 Route::get('/BaithiTimkiem', [BaithiController::class, 'getDSTimBaithi'])->name('laydstimbaithi');
+
 Route::post('/Thembaithi', [BaithiController::class, 'themBaithi'])->name('thembaithi')->withoutMiddleware([VerifyCsrfToken::class]);
+
 Route::post('/Dangnhap', [NguoidungController::class, 'getNguoidung'])->name('dangnhap')->withoutMiddleware([VerifyCsrfToken::class]);
+
 Route::get('/Chitietbaithi/{id}', [ChitietbaithiController::class, 'getToanBaiThi'])->name('laytoanbaithi');
 
 Route::post('/Chamdiem', [ChamdiemController::class, 'chamDiem'])->name('chamdiem')->withoutMiddleware([VerifyCsrfToken::class]);
@@ -43,3 +48,7 @@ Route::post('/Themtheloai', [TheloaiController::class, 'themTheloai'])->name('th
 Route::delete('/Xoatheloai/{id}', [TheloaiController::class, 'xoaTheloai'])->name('xoatheloai')->withoutMiddleware([VerifyCsrfToken::class]);
 
 Route::post('/Dangky', [NguoidungController::class, 'dangKy'])->name('dangky')->withoutMiddleware([VerifyCsrfToken::class]);
+
+Route::delete('/Xoacauhoi/{id}', [ChitietbaithiController::class, 'xoaCauhoi'])->name('xoacauhoi')->withoutMiddleware([VerifyCsrfToken::class]);
+
+Route::get('/Cauhoichitiet/{id}', [ChitietbaithiController::class, 'ctChinhsuach'])->name('chsuach');
