@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Baithi;
 use App\Models\Cauhoi;
 use App\Models\Cautraloi;
 use App\Models\Chitietbaithi;
@@ -14,7 +14,9 @@ class ChitietbaithiController extends Controller
 {
     public function getToanBaiThi($id)
     {
-        $ctbt = Chitietbaithi::where('IDBaithi', $id)->get();
+        $bt = Baithi::where('IDBaithi', $id)->first();
+        $sl = (int) $bt->Soluongcau;
+        $ctbt = Chitietbaithi::where('IDBaithi', $id)->inRandomOrder()->limit($sl)->get();
         $kq = [];
         foreach ($ctbt as $v) {
             $ch = Cauhoi::where('IDCauhoi', $v->IDCauhoi)->first();
